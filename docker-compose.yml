@@ -5,27 +5,34 @@ services:
   elasticsearch:
     container_name: elasticsearch
     image: elasticsearch:5.2.0
-    network_mode: host
-    restart: always
     ports:
       - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - elk
+    restart: always
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
     volumes:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
       - /opt/esdata:/usr/share/elasticsearch/data
-    command: -Enetwork.bind_host=0.0.0.0
 
   kibana:
     container_name: kibana
     image: kibana:5.2.0
     depends_on:
       - elasticsearch
-    network_mode: host
+    networks:
+      - elk
     restart: always
     volumes:
       - ./kibana/config/:/usr/share/kibana/config
     ports:
       - "5601:5601"
-    depends_on:
-      - elasticsearch
+
+networks:
+
+  elk:
+    driver: bridge
