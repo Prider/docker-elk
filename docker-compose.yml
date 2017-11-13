@@ -4,6 +4,8 @@ services:
     image: elasticsearch:latest
     environment:
       ES_JAVA_OPTS: -Xms1g -Xmx1g
+    volumes:
+      - /opt/esdata:/usr/share/elasticsearch/data
   kibana:
     image: kibana:latest
     ports:
