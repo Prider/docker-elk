@@ -20,8 +20,8 @@ services:
     depends_on:
       - elasticsearch
     network_mode: host
-    links:
-      - elasticsearch
+    environment:
+      ELASTICSEARCH_URL: http://0.0.0.0:9200
   logger:
     image: alpine:latest
     volumes:
