@@ -4,8 +4,12 @@ services:
     image: elasticsearch:latest
     environment:
       ES_JAVA_OPTS: -Xms1g -Xmx1g
+    restart: always
+    ports:
+      - "9200:9200"
     volumes:
       - /opt/esdata:/usr/share/elasticsearch/data
+    command: -Enetwork.bind_host=0.0.0.0
   kibana:
     image: kibana:latest
     ports:
