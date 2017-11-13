@@ -19,4 +19,4 @@ services:
     depends_on:
       - elasticsearch
     environment:
-      ELASTICSEARCH_URL: http://0.0.0.0:9200
+      ELASTICSEARCH_URL: http://elasticsearch:9200
