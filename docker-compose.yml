@@ -1,7 +1,9 @@
 version: '2'
 services:
   elasticsearch:
+    container_name: elasticsearch
     image: elasticsearch:latest
+    network_mode: host
     environment:
       ES_JAVA_OPTS: -Xms1g -Xmx1g
     restart: always
@@ -11,11 +13,13 @@ services:
       - /opt/esdata:/usr/share/elasticsearch/data
     command: -Enetwork.bind_host=0.0.0.0
   kibana:
+    container_name: kibana
     image: kibana:latest
     ports:
       - 5601:5601
     depends_on:
       - elasticsearch
+    network_mode: host
     links:
       - elasticsearch
   logger:
