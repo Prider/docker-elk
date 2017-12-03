@@ -2,6 +2,8 @@ version: '2'
 services:
   elasticsearch:
     image: elasticsearch:latest
+    command: [
+      -Des.threadpool.index.queue_size=100000]
     container_name: elasticsearch
     environment:
       ES_JAVA_OPTS: -Xms1g -Xmx1g
@@ -10,7 +12,6 @@ services:
       - "9200:9200"
     volumes:
       - /opt/esdata:/usr/share/elasticsearch/data
-      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
   kibana:
     image: kibana:latest
     container_name: kibana
