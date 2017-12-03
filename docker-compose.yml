@@ -2,13 +2,10 @@ version: '2'
 services:
   elasticsearch:
     image: elasticsearch:latest
-    command: [
-      -Des.script.inline=on,
-      -Des.cluster.name=elasticsearch-cluster,
-      -Des.threadpool.index.queue_size=1000]
     container_name: elasticsearch
     environment:
-      ES_JAVA_OPTS: -Xms1g -Xmx1g
+      - thread_pool.index.queue_size=1000
+      - ES_JAVA_OPTS: -Xms1g -Xmx1g
     restart: always
     ports:
       - "9200:9200"
