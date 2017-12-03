@@ -2,8 +2,6 @@ version: '2'
 services:
   elasticsearch:
     image: elasticsearch:latest
-    command: [
-      -Des.threadpool.index.queue_size=100000]
     container_name: elasticsearch
     environment:
       threadpool.index.queue_size: 100000
