@@ -4,7 +4,7 @@ services:
     image: elasticsearch:latest
     container_name: elasticsearch
     environment:
-      threadpool.index.queue_size: 100000
+      threadpool.index.queue_size: 500
       ES_JAVA_OPTS: -Xms1g -Xmx1g
     restart: always
     ports:
