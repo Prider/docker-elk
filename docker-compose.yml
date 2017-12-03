@@ -10,7 +10,7 @@ services:
       - "9200:9200"
     volumes:
       - /opt/esdata:/usr/share/elasticsearch/data
-      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
   kibana:
     image: kibana:latest
     container_name: kibana
